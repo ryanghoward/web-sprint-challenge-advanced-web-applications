@@ -35,7 +35,7 @@ const Login = () => {
         push("/view");
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
         setError("Oops! There was a mistake. Please try again.");
       });
   };
