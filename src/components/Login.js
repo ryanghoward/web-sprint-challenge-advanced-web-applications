@@ -47,7 +47,7 @@ const Login = () => {
         <h2>Please enter your account information.</h2>
         <form onSubmit={handleLogin}>
           <Label htmlFor='username'>
-            Username
+            <span>Username: </span>
             <input
               type='text'
               name='username'
@@ -57,7 +57,7 @@ const Login = () => {
             />
           </Label>
           <Label htmlFor='password'>
-            Password
+            <span>Password: </span>
             <input
               type='password'
               name='password'
@@ -108,10 +108,12 @@ const FormGroup = styled.form`
   padding: 1rem;
 `;
 
-const Input = styled.input`
+const StyledInput = styled.input`
   font-size: 1rem;
   padding: 1rem 0;
   width: 100%;
+  position: center;
+  border: 1px solid red;
 `;
 
 const Button = styled.button`
