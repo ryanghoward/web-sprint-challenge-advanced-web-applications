@@ -17,7 +17,13 @@ const Logout = () => {
       });
   }, []);
 
-  return <div>Adios!</div>;
+  return (
+    <div>
+      <a href='https://www.youtube.com/watch?v=CnQ8N1KacJc'>
+        <h1>Good Riddance!</h1>
+      </a>
+    </div>
+  );
 };
 
 export default Logout;

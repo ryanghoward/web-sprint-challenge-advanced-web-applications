@@ -132,8 +132,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+After the user properly authenticates (properly logs in), the server returns the token. Your application needs to save the returned token (the permissions) to localStorage, so that the above axiosWithAuth module can grab it for other calls that require the Authorization header.”
+
 2. What steps can you take in your web apps to keep your data secure?
+
+There are a few steps we can take. One is creating protected routes for certain states of our application. In order to access these areas we can utilize authorization tokens. axiosWithAuth creates a sort of gate for our HTTP methods and will forbid any unauthorized users to manipulate or view data in places they aren't allowed.
 
 3. Describe how web servers work.
 
+Web servers are simply computer programs that serve web pages when they are requested through a web client. The devices that operate this program are known as servers, and the terms web server and server are practically interchangeable.
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+POST - Creates a new resource
+GET - Retrieves a resource
+PUT - Updates an existing resource
+DELETE - Deletes a resource
