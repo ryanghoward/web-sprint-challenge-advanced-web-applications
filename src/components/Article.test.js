@@ -2,39 +2,58 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Article from "./Article";
+import "@testing-library/jest-dom";
+
+// const testArticle = {
+//   id: "aMqwd", //unique article id
+//   headline: "test headline", //title of article
+//   createdOn: "2021-08-09T18:02:38-04:00", //timestamp of when article was added
+//   summary: "test summary", //short summary statement of article
+//   body: "test body", //paragraph of article text
+// };
 
 const testArticle = {
-  id: "aMqwd", //unique article id
-  headline: "test headline", //title of article
-  createdOn: "2021-08-09T18:02:38-04:00", //timestamp of when article was added
-  summary: "test summary", //short summary statement of article
-  body: "test body", //paragraph of article text
+  headline: "Test headline",
+  author: "Test Author",
+  summary: "Test Summary",
+  body: "Test Body",
+};
+
+const autoAPTest = {
+  headline: "",
+  author: null,
+  summary: "",
+  body: "",
 };
 
 test("renders component without errors", () => {
-  render(<testArticle />);
+  render(<Article article={testArticle} />);
 });
 
 test("renders headline, author from the article when passed in through props", () => {
   render(<Article article={testArticle} />);
-  const headline = screen.queryByTestId("headline");
-  const author = screen.queryByTestId("author");
-  // expect(headline).toBeInTheDocument();
-  // expect(author).toBeInTheDocument();
+  const headline = screen.queryByText(/test headline/i);
+  const author = screen.queryByText(/test author/i);
+  const summary = screen.queryByText(/test summary/i);
+  const body = screen.queryByText(/test body/i);
+  expect(headline).toBeInTheDocument();
+  expect(author).toBeInTheDocument();
+  expect(summary).toBeInTheDocument();
+  expect(body).toBeInTheDocument();
 });
 
 test('renders "Associated Press" when no author is given', () => {
-  render(<Article article={testArticle} />);
-  const author = screen.queryByTestId("author");
-  expect(author).toHaveTextContent(/associated press/i);
+  render(<Article article={autoAPTest} />);
+  const autoAuthor = screen.queryByText(/associated press/i);
+  expect(autoAuthor).toBeInTheDocument();
 });
 
 test("executes handleDelete when the delete button is pressed", () => {
   const handleDelete = jest.fn();
   render(<Article article={testArticle} handleDelete={handleDelete} />);
-  const deleteButton = screen.queryByTestId("deleteButton");
-  userEvent.click(deleteButton);
-  expect(handleDelete).toHaveBeenCalled();
+  const button = screen.getByTestId("deleteButton");
+  userEvent.click(button);
+  expect(handleDelete).toBeCalled();
 });
 
 //Task List:
